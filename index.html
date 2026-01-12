@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAFO Index | India's Real-Time Culture Ledger</title>
+    <meta name="description"
+        content="Track who is rising and falling in India's online culture. Automated relevance, human sentiment.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Syne:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+        <div class="globe globe-3"></div>
+    </div>
+
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation / Header -->
+    <header class="app-header glass-panel">
+        <div class="logo-container">
+            <h1 class="logo glitch" data-text="FAFO">FAFO</h1>
+            <span class="logo-sub">Index // TERMINAL v2.0</span>
+        </div>
+        <nav class="nav-filters">
+            <button class="filter-btn active" data-filter="national">🇮🇳 National</button>
+            <button class="filter-btn" data-filter="state">📍 State</button>
+        </nav>
+        <div class="user-profile-preview">
+            <div class="avatar-placeholder">👤</div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Market Overview -->
+        <section class="market-overview glass-panel">
+            <div class="overview-header">
+                <h3>Global Culture Volatility Index</h3>
+                <span class="live-indicator">● LIVE</span>
+            </div>
+            <div class="overview-chart-container">
+                <canvas id="marketChart"></canvas>
+            </div>
+            <div class="market-stats">
+                <div class="stat-item">
+                    <span class="label">Total Volatility</span>
+                    <span class="value val-high">94.2%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Sentiment Net</span>
+                    <span class="value val-low">-12.4</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Active Threads</span>
+                    <span class="value">4.2M</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Switcher -->
+        <div class="chart-toggles">
+            <button class="toggle-btn active" data-view="relevance">
+                <span class="icon">📈</span> Relevance
+                <span class="sub-text">Who's Trending</span>
+            </button>
+            <button class="toggle-btn" data-view="sentiment">
+                <span class="icon">❤️‍🔥</span> Sentiment
+                <span class="sub-text">Public Reaction</span>
+            </button>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div class="list-header">
+            <span>Rank</span>
+            <span>Profile</span>
+            <span>Momentum (7d)</span>
+            <span>Score</span>
+        </div>
+        <section id="chart-container" class="chart-list">
+            <!-- Items injected by JS -->
+        </section>
+    </main>
+
+    <!-- Detailed Profile Modal -->
+    <dialog id="profile-modal" class="glass-panel modal">
+        <div class="modal-content">
+            <button id="close-modal" class="close-btn">×</button>
+            <div class="profile-header">
+                <img id="modal-avatar" src="" alt="Avatar" class="profile-avatar-lg">
+                <div class="profile-info">
+                    <h2 id="modal-name">Name</h2>
+                    <div class="badges">
+                        <span id="modal-rank" class="badge rank-badge">#1</span>
+                        <span id="modal-trend" class="badge trend-badge">🔥 Viral</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-grid">
+                <!-- Left Col: Stats -->
+                <div class="modal-col-left">
+                    <div class="stat-box relevance-box">
+                        <h3>Relevance Score</h3>
+                        <div class="score-display" id="modal-relevance-score">98.5</div>
+                        <p class="stat-desc">Search Volume & Mentions</p>
+                    </div>
+
+                    <div class="stat-box sentiment-box">
+                        <h3>Sentiment</h3>
+                        <div class="sentiment-meter">
+                            <input type="range" min="-10" max="10" value="0" id="sentiment-slider">
+                            <div class="sentiment-labels">
+                                <span>😡 Cancel</span>
+                                <span id="current-sentiment-val">0</span>
+                                <span>😍 Stan</span>
+                            </div>
+                        </div>
+                        <button id="submit-vote" class="action-btn">CAST VOTE</button>
+                    </div>
+                </div>
+
+                <!-- Right Col: Radar Chart -->
+                <div class="modal-col-right">
+                    <div class="radar-container glass-panel-inset">
+                        <h3>Sentiment Composition</h3>
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="context-section">
+                <h3>Analysis / Context</h3>
+                <p id="modal-reason" class="typewriter-text">Loading context...</p>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
